@@ -1,0 +1,11 @@
+@PersonWebAPI_HostAddress = http://localhost:5173
+
+GET {{PersonWebAPI_HostAddress}}/
+Accept: application/json
+
+###
+
+GET {{PersonWebAPI_HostAddress}}/api/persons
+Accept: application/json
+
+###
