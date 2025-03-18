@@ -4,14 +4,29 @@ formGetPersons.addEventListener("submit", async (event) => {
 
     try {
         const url = `http://localhost:5173/api/persons`;
-        let response = await fetch(url);
+        let response = await fetch(url, {
+            method: 'GET'
+        });
         let persons = await response.json();
         console.log(persons);
         let personsContainer = document.getElementById("persons");
         personsContainer.innerHTML = '<ul class="list-group">';
         for (const person of persons) {
             const date = new Date(person.date_of_birth).toLocaleDateString();
-            personsContainer.innerHTML +=`<li class="list-group-item">${person.last_name} ${person.first_name}, ${date}</li>`;
+            personsContainer.innerHTML +=`
+<li class="list-group-item">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <p>${person.last_name} ${person.first_name}, ${date}</p>
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-danger btn-sm" type="button" onclick="deletePerson('${person.id}')">Удалить</button>
+            </div>
+        </div>
+    </div>
+</li>
+`;
         }
         personsContainer.innerHTML += '</ul>';
     } catch (err) {
@@ -42,3 +57,10 @@ formAddPerson.addEventListener("submit", async (event) => {
         console.error(err);
     }
 });
+
+async function deletePerson(personId) {
+    const url = `http://localhost:5173/api/persons/${personId}`;
+    await fetch(url, {
+        method: 'DELETE'
+    });
+}

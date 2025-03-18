@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using PersonWebAPI;
 
@@ -18,10 +19,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors(corsPolicyBuilder => corsPolicyBuilder
-    .AllowAnyOrigin()
-    .AllowAnyHeader()
-    .AllowAnyMethod());
+app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.MapGet("/", async () =>
 {
@@ -47,6 +45,13 @@ app.MapPost("/api/persons", async (IMongoClient client, Person person) =>
     var db = client.GetDatabase("persons");
     var collection = db.GetCollection<Person>("persons");
     await collection.InsertOneAsync(person);
+});
+
+app.MapDelete("/api/persons/{id}", async (IMongoClient client, string id) =>
+{
+    var db = client.GetDatabase("persons");
+    var collection = db.GetCollection<Person>("persons");
+    await collection.DeleteOneAsync(x => x.Id == id);
 });
 
 await app.RunAsync();

@@ -8,8 +8,9 @@ namespace PersonWebAPI;
 public record Person
 {
     [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     [JsonPropertyName("id")]
-    public ObjectId Id { get; init; }
+    public string Id { get; init; }
     
     [BsonElement("last_name")]
     [JsonPropertyName("last_name")]
