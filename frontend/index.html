@@ -19,19 +19,72 @@
     </div>
 </header>
 <main>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <form id="formGetPersons">
-                    <button type="submit" class="btn btn-primary">Получить список людей</button>
-                </form>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Все записи</button>
+            <button class="nav-link" id="nav-add-tab" data-bs-toggle="tab" data-bs-target="#nav-add" type="button" role="tab" aria-controls="nav-add" aria-selected="false">Добавить</button>
+            <button class="nav-link" id="nav-update-tab" data-bs-toggle="tab" data-bs-target="#nav-update" type="button" role="tab" aria-controls="nav-update" aria-selected="false">Редактировать</button>
+            <button class="nav-link" id="nav-delete-tab" data-bs-toggle="tab" data-bs-target="#nav-delete" type="button" role="tab" aria-controls="nav-delete" aria-selected="false">Удалить</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col">
+                        <form id="formGetPersons">
+                            <button type="submit" class="btn btn-primary">Получить список людей</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" id="persons"></div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col" id="persons"></div>
+        <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab" tabindex="0">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col">
+                        <form id="formAddPerson">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Фамилия">
+                                            <label for="inputLastName">Фамилия</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="inputFirstName" name="first_name" placeholder="Имя">
+                                            <label for="inputFirstName">Имя</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="inputDateOfBirth" name="date_of_birth" placeholder="Дата рождения">
+                                            <label for="inputDateOfBirth">Дата рождения</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success">Создать</button>
+                                        <button type="reset" class="btn btn-warning">Очистить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="tab-pane fade" id="nav-update" role="tabpanel" aria-labelledby="nav-update-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="nav-delete" role="tabpanel" aria-labelledby="nav-delete-tab" tabindex="0">...</div>
     </div>
 </main>
+
 <footer>
     <div class="container">
         <div class="row">

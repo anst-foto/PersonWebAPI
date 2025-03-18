@@ -18,3 +18,27 @@ formGetPersons.addEventListener("submit", async (event) => {
         console.error(err);
     }
 });
+
+let formAddPerson = document.getElementById("formAddPerson");
+formAddPerson.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    
+    const url = `http://localhost:5173/api/persons`;
+    try {
+        let formData = new FormData(formAddPerson)
+        let formDataJson = JSON.stringify(Object.fromEntries(formData));
+        console.log(formDataJson);
+        
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: formDataJson,
+            mode: 'cors'
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+});

@@ -18,7 +18,10 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin());
+app.UseCors(corsPolicyBuilder => corsPolicyBuilder
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod());
 
 app.MapGet("/", async () =>
 {
@@ -37,6 +40,13 @@ app.MapGet("/api/persons", async (IMongoClient client) =>
     #endif
     
     return persons;
+});
+
+app.MapPost("/api/persons", async (IMongoClient client, Person person) =>
+{
+    var db = client.GetDatabase("persons");
+    var collection = db.GetCollection<Person>("persons");
+    await collection.InsertOneAsync(person);
 });
 
 await app.RunAsync();
