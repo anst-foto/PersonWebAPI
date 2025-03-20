@@ -79,7 +79,45 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="nav-update" role="tabpanel" aria-labelledby="nav-update-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="nav-update" role="tabpanel" aria-labelledby="nav-update-tab" tabindex="0">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col">
+                        <form id="formUpdatePerson">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="hidden" id="updateId" name="id">
+                                            <input type="text" class="form-control" id="updateLastName" name="last_name" placeholder="Фамилия">
+                                            <label for="updateLastName">Фамилия</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="updateFirstName" name="first_name" placeholder="Имя">
+                                            <label for="updateFirstName">Имя</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="updateDateOfBirth" name="date_of_birth" placeholder="Дата рождения">
+                                            <label for="updateDateOfBirth">Дата рождения</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success">Сохранить</button>
+                                        <button type="reset" class="btn btn-warning">Очистить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 

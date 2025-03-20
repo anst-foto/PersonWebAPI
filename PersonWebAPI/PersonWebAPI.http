@@ -9,3 +9,20 @@ GET {{PersonWebAPI_HostAddress}}/api/persons
 Accept: application/json
 
 ###
+
+POST {{PersonWebAPI_HostAddress}}/api/persons
+Content-Type: application/json;charset=utf-8
+
+{
+  "first_name": "Andrey",
+  "last_name": "Starinin",
+  "date_of_birth": "1986-02-18"
+}
+
+###
+
+# DELETE {{PersonWebAPI_HostAddress}}/api/persons/
+
+###
+
+# PUT {{PersonWebAPI_HostAddress}}/api/persons/

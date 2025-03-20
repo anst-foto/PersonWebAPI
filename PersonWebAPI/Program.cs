@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using PersonWebAPI;
 
@@ -51,7 +50,19 @@ app.MapDelete("/api/persons/{id}", async (IMongoClient client, string id) =>
 {
     var db = client.GetDatabase("persons");
     var collection = db.GetCollection<Person>("persons");
-    await collection.DeleteOneAsync(x => x.Id == id);
+    var result = await collection.DeleteOneAsync(x => x.Id == id);
+    return Results.Ok(result);
+});
+
+app.MapPut("/api/persons/", async (IMongoClient client, Person person) =>
+{
+    if (string.IsNullOrEmpty(person.Id)) 
+        return Results.NotFound();
+    
+    var db = client.GetDatabase("persons");
+    var collection = db.GetCollection<Person>("persons");
+    var result = await collection.ReplaceOneAsync(x => x.Id == person.Id, person);
+    return Results.Ok(result);
 });
 
 await app.RunAsync();
